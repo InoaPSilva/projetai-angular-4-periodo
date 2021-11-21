@@ -25,7 +25,7 @@ const routes: Routes = [
         component:ListProjectComponent,
       },
       {
-        path:'edit',
+        path:'edit/:_id?',
         component:EditProjectComponent,
         canActivate: [AdminGuard]
       },

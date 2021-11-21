@@ -1,1 +1,13 @@
-<p>list-project works!</p>
+<mat-grid-list class="component_wrapper" cols="4" rowHeight="4:6">
+    <mat-grid-tile class="cards_wrap" *ngFor="let x of projects; index as i;">
+        <div class="card_item">
+            <div class="card_inner">
+                <img src="{{projects[i].icon}}" alt="">
+                <div class="role_name">{{projects[i].title}}</div>
+                <div class="real_name">{{this.projects[i].user[0].name}}</div>
+                <div class="description">{{projects[i].summary}}</div>
+                <a [routerLink]="['/project', projects[i]._id]" class="btn">Veja mais</a>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>   
