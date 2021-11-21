@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,15 +11,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
 
-  ngOnInit(): void { this.login() }
-  ngOnDestroy() {
-
+  ngOnInit(): void {
+    this.login();
   }
+
 
   //Login para o sistema do projetai, falta colocar formulario 
   login() {
-    
-   return this.auth.login("a@a", "a").subscribe(
+
+    return this.auth.login("aa@a", "a").subscribe(
       (response) => {
 
         if (response !== undefined) {
@@ -35,8 +34,8 @@ export class LoginComponent implements OnInit {
 
         }
       })
-  }
 
+  }
 
 }
 

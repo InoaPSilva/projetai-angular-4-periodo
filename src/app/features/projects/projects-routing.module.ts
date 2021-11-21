@@ -6,6 +6,8 @@ import { ListProjectComponent } from './pages/list-project/list-project.componen
 import { RegisterProjectComponent } from './pages/register-project/register-project.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 
+import { AdminGuard } from 'src/app/core/guards/admin.guard';
+
 
 const routes: Routes = [
   {
@@ -24,11 +26,13 @@ const routes: Routes = [
       },
       {
         path:'edit',
-        component:EditProjectComponent
+        component:EditProjectComponent,
+        canActivate: [AdminGuard]
       },
       {
         path:'register',
-        component:RegisterProjectComponent
+        component:RegisterProjectComponent,
+        canActivate: [AdminGuard]
       },
     ]
   }, 
