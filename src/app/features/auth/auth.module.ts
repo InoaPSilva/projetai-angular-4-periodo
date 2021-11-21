@@ -9,6 +9,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { AuthComponent } from './auth.component';
 
+import { AuthService } from './services/auth.service';
+
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { AuthComponent } from './auth.component';
     RouterModule,
     AuthRoutingModule
 
-  ]
+  ],
+  providers: [AuthService],
+
 })
 export class AuthModule { }

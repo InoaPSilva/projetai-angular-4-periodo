@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(private auth: AuthService) { }
+
+  ngOnInit(): void { this.login() }
+  ngOnDestroy() {
+
   }
 
+  //Login para o sistema do projetai, falta colocar formulario 
+  login() {
+    
+   return this.auth.login("a@a", "a").subscribe(
+      (response) => {
+
+        if (response !== undefined) {
+          console.log("insira mensagem de sucesso");
+
+        }
+      },
+      (error) => {
+
+        if (error.error !== undefined) {
+          console.log("insira mensagem de erro");
+
+        }
+      })
+  }
+
+
 }
+
