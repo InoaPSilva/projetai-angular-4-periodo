@@ -13,8 +13,8 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
   token = localStorage.getItem('authorization')!;
 
-  head = new HttpHeaders({ 'authorization': this.token })
-
+  head = new HttpHeaders({ 'authorization': this.token, 'enctype': 'multipart/form-data; boundary=<calculated when request is sent>'  })
+  
   register(title: any,
     summary: any,
     objective: any,
@@ -31,11 +31,11 @@ export class ProjectService {
       .pipe(take(1))
   }
 
-  edit(id: any, title: any, summary: any,
-    objective: any, category: any,
-    files: any) {
-    console.log(id);
+  edit(id: any, title: any, summary: any, objective: any, category: any, icon:any, banner:any) {
 
+    const files = { icon, banner }
+    console.log(files);
+    
     return this.http.put(this.url + "/project/edit/" + id,
       {
         title,
@@ -44,7 +44,7 @@ export class ProjectService {
         category,
         files
       }, { headers: this.head })
-      .pipe(take(1))
+      .pipe(take(3))
   }
 
   display() {

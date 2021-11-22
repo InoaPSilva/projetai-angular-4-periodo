@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../service/project.service';
 
 @Component({
@@ -12,59 +12,63 @@ import { ProjectService } from '../../service/project.service';
 
 
 export class EditProjectComponent implements OnInit {
-  files:any = []
+  icon: any = []
+  banner: any = []
   form = this.fb.group({
     title: [''],
     summary: [''],
     objective: [''],
     category: [''],
     files: [''],
-    
+
   });
+  FData = new FormData();
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private project: ProjectService) { }
 
 
-  onChange(event: any) {
-    const a =  [event.target.files[0]];
-    this.files.push(a)
-    console.log(this.files);
-      
+  handleIcon(event: any) {
+    const a = event.target.files;
+    this.icon = a;
+    console.log(this.icon);
+    this.FData.append('icon', this.icon[0]);
 
   }
 
+  handleBanner(event: any) {
+    const a = event.target.files;
+    this.banner = a;
+    console.log(this.banner);
+    this.FData.append('banner', this.banner[0]);
+    
+  }
 
   editProject() {
-    
-    const form = new FormData();
-    
-    form.append('icon', this.files[0][0]);
-    form.append('banner', this.files[1][0]);
 
-    const files = {'files': [ form.get("icon"), form.get("banner") ]}
-
-    let a:any = [
-      this.form.get("title")?.value,
-      this.form.get("summary")?.value,
-      this.form.get("objective")?.value,
-      this.form.get("category")?.value,
-      files
-    ]
-    console.log(a);
     
+
+    this.FData.append("title", this.form.get("title")?.value)
+    this.FData.append("summary", this.form.get("summary")?.value)
+    this.FData.append("objective", this.form.get("objective")?.value)
+    this.FData.append("category", this.form.get("category")?.value)
+
+
+    console.log();
+    
+
     return this.project.edit(
       this.route.snapshot.paramMap.get('id'),
-      this.form.get("title"),
-      this.form.get("summary"),
-      this.form.get("objective"),
-      this.form.get("category"),
-      form.get("files")
-    ).subscribe(
-      (response) => {
-        console.log("func inside");
+          this.FData.get("title"),
+          this.FData.get("summary"),
+          this.FData.get("objective"),
+          this.FData.get("category"),
+          this.FData.get("icon"),
+          this.FData.get("banner"),
 
+          ).subscribe(
+      (response) => {
         if (response !== undefined) {
           console.log(response);
 
