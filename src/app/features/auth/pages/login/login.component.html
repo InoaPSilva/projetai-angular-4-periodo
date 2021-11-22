@@ -10,7 +10,7 @@
     <h1 class="h1">Acesso Administração</h1>
   </section>
 
-  <form>
+  <form [formGroup] = 'form' (ngSubmit)="login()">
     <section class="form-group">
       <input
         type="email"

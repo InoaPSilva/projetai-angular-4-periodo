@@ -5,44 +5,35 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  constructor(private auth: AuthService, private fb: FormBuilder) {}
 
-
-  constructor(private auth: AuthService,
-    private fb:FormBuilder) { }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   form = this.fb.group({
     login: ['', Validators.required],
     password: ['', Validators.required],
-
   });
 
-
-  //Login para o sistema do projetai, falta colocar formulario 
+  //Login para o sistema do projetai, falta colocar formulario
   login() {
-
-    return this.auth.login(this.form.controls['login'].value,this.form.controls['password'].value).subscribe(
-      (response) => {
-
-        if (response !== undefined) {
-          console.log("insira mensagem de sucesso");
-
+    return this.auth
+      .login(
+        this.form.controls['login'].value,
+        this.form.controls['password'].value
+      )
+      .subscribe(
+        (response) => {
+          if (response !== undefined) {
+            console.log('insira mensagem de sucesso');
+          }
+        },
+        (error) => {
+          if (error.error !== undefined) {
+            console.log('insira mensagem de erro');
+          }
         }
-      },
-      (error) => {
-
-        if (error.error !== undefined) {
-          console.log("insira mensagem de erro");
-
-        }
-      })
-
+      );
   }
-
 }
-
