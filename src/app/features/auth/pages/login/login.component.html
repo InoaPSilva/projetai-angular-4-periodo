@@ -1,19 +1,42 @@
-<form [formGroup] ='form' (ngSubmit)="login()">
-    <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="text" class="input" placeholder="email" formControlName="login">
-     </div>
-  </div>
-  <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="password" class="input" placeholder="password" formControlName="password">
-     </div>
-  </div>
-    <button type="submit" class="btn btn-success" value="Registrar">Registar</button>
-</form>
+<section class="container mx-auto p-5">
+  <figure class="my-4">
+    <img src="/src/assets/images/logo/logo-projetai.png" alt="Logo ProjetAí" />
+    <figcaption class="d-none">Logo ProjetAí</figcaption>
+  </figure>
+  <section class="d-flex justify-content-center">
+    <h1 class="h1">Acesso</h1>
+  </section>
+
+  <form>
+    <section class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="E-mail"
+      />
+    </section>
+
+    <section class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Senha"
+      />
+    </section>
+
+    <section class="d-flex justify-content-center">
+      <section class="d-block">
+        <section>
+          <button type="submit" class="btn btn-light mb-4">Entrar</button>
+        </section>
+
+        <section>
+          <button type="button" class="btn btn-link">Voltar</button>
+        </section>
+      </section>
+    </section>
+  </form>
+</section>

@@ -1,0 +1,13 @@
+.btn-light {
+  background-color: #A4EBF3;
+  border: none;
+  color: #000;
+}
+
+.btn-light:hover {
+  text-decoration: underline;
+}
+
+.btn-link {
+  color: #000;
+}

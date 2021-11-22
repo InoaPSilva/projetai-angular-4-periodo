@@ -1,3 +1,23 @@
+/*
+===============
+Base Structure
+===============
+General
+*Body
+*Header
+*Footer
+*Home page
+*Extras
+*@media
+*/
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* General */
+html, body, header, main, footer, article, div, span, p, a, figure, img, small, ul, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+  list-style: none;
+}
