@@ -1,56 +1,56 @@
-<form [formGroup] ='form' (ngSubmit)="editProject()">
-    <h2 class="title">Bem vindo</h2>
-       <div class="input-div one">
-          <div class="i">
-                  <i class="fas fa-user"></i>
-          </div>
-          <div class="div">
-                  <input type="text" class="input" placeholder="titulo" formControlName="title">
-          </div>
-       </div>
-       
-    <div class="input-div one">
-        <div class="i">
-                <i class="fas fa-user"></i>
+<form [formGroup] ='form'>
+        <h2 class="title">Bem vindo</h2>
+           <div class="input-div one">
+              <div class="i">
+                      <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                      <input type="text" class="input" placeholder="titulo" formControlName="title">
+              </div>
+           </div>
+           
+        <div class="input-div one">
+            <div class="i">
+                    <i class="fas fa-user"></i>
+            </div>
+            <div class="div">
+                <input type="text" class="input" placeholder="resumo" formControlName="summary">
+            </div>
         </div>
-        <div class="div">
-            <input type="text" class="input" placeholder="resumo" formControlName="summary">
-        </div>
-    </div>
+        
     
-
-    <div class="input-div one">
-        <div class="i">
-                <i class="fas fa-user"></i>
+        <div class="input-div one">
+            <div class="i">
+                    <i class="fas fa-user"></i>
+            </div>
+            <div class="div">
+                    <input type="text" placeholder="objetivo" class="input" formControlName="objective">
+            </div>
         </div>
-        <div class="div">
-                <input type="text" placeholder="objetivo" class="input" formControlName="objective">
+    
+        <div class="input-div pass">
+              <div class="i"> 
+                   <i class="fas fa-lock"></i>
+              </div>
+              <div class="div">
+                   <input type="text" class="input" placeholder="categoria" formControlName="category">
+           </div>
         </div>
-    </div>
-
-    <div class="input-div pass">
-          <div class="i"> 
-               <i class="fas fa-lock"></i>
-          </div>
-          <div class="div">
-               <input type="text" class="input" placeholder="categoria" formControlName="category">
-       </div>
-    </div>
-    <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="file" class="input" (change)="fileChangeEvent($event)" placeholder="icone" formControlName="icon">
-     </div>
-  </div>
-  <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="file" class="input" (change)="fileChangeEvent($event)" placeholder="banner" formControlName="banner">
-     </div>
-  </div>
-    <button type="submit" class="btn btn-success" value="Registrar">Registar</button>
-</form>
+        <div class="input-div pass">
+            <div class="i"> 
+                 <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                 <input type="file" class="input" (change)="onChange($event)" placeholder="icone" formControlName="icon">
+         </div>
+      </div>
+      <div class="input-div pass">
+            <div class="i"> 
+                 <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                 <input type="file" class="input" (change)="onChange($event)" placeholder="banner" formControlName="banner">
+         </div>
+      </div>
+        <button type="button" (click)="editProject()" class="btn btn-success" value="Registrar">Registar</button>
+    </form>
