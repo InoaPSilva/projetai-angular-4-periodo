@@ -7,6 +7,8 @@ import { ListGuestComponent } from './pages/list-guest/list-guest.component';
 import { EditGuestComponent } from './pages/edit-guest/edit-guest.component';
 import { RegisterGuestComponent } from './pages/register-guest/register-guest.component';
 
+import { AdminGuard } from 'src/app/core/guards/admin.guard';
+
 const routes: Routes = [
   {
     path: "",
@@ -24,11 +26,14 @@ const routes: Routes = [
       },
       {
         path:'edit',
-        component:EditGuestComponent
+        component:EditGuestComponent,
+        canActivate: [AdminGuard]
       },
       {
         path:'register',
-        component:RegisterGuestComponent
+        component:RegisterGuestComponent,
+        canActivate: [AdminGuard]
+
       },
     ]
   }, 

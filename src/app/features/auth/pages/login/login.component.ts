@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,17 +10,23 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+    private fb:FormBuilder) { }
 
-  ngOnInit(): void { this.login() }
-  ngOnDestroy() {
+  ngOnInit(): void {
 
   }
+  form = this.fb.group({
+    login: ['', Validators.required],
+    password: ['', Validators.required],
+
+  });
+
 
   //Login para o sistema do projetai, falta colocar formulario 
   login() {
-    
-   return this.auth.login("a@a", "a").subscribe(
+
+    return this.auth.login(this.form.controls['login'].value,this.form.controls['password'].value).subscribe(
       (response) => {
 
         if (response !== undefined) {
@@ -35,8 +41,8 @@ export class LoginComponent implements OnInit {
 
         }
       })
-  }
 
+  }
 
 }
 

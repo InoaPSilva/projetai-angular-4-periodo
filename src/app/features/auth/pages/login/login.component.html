@@ -1,1 +1,19 @@
-<p>login works!</p>
+<form [formGroup] ='form' (ngSubmit)="login()">
+    <div class="input-div pass">
+        <div class="i"> 
+             <i class="fas fa-lock"></i>
+        </div>
+        <div class="div">
+             <input type="text" class="input" placeholder="email" formControlName="login">
+     </div>
+  </div>
+  <div class="input-div pass">
+        <div class="i"> 
+             <i class="fas fa-lock"></i>
+        </div>
+        <div class="div">
+             <input type="password" class="input" placeholder="password" formControlName="password">
+     </div>
+  </div>
+    <button type="submit" class="btn btn-success" value="Registrar">Registar</button>
+</form>

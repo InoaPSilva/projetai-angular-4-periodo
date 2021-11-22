@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../service/project.service';
 
 @Component({
   selector: 'app-list-project',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private project: ProjectService) { }
 
   ngOnInit(): void {
+    this.getProject();
+    
   }
+  projects:any = [{}];
+  ProjetoId = this.projects[0]._id;
+
+  getProject(){
+    this.project.display().subscribe(objetos =>{ this.projects.push(objetos)
+    this.projects = this.projects[1].message;    
+    console.log(this.projects);
+    });    
+  }
+
 
 }
