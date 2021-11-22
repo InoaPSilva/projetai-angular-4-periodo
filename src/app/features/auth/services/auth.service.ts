@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take, tap } from 'rxjs/operators';
@@ -12,28 +13,27 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(token: any) {
-
-    localStorage.removeItem(token)
-    localStorage.setItem('Authorization', token);
-    return true;
-
+  private authenticate(result: any) {
+    const expiresAt = moment().add(result.expiresIn, 'second');
+    localStorage.setItem('authorization', result);
+    localStorage.setItem('access_token', result.accessToken);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
   isAuthenticated() {
-    if (localStorage.getItem('Authorization') !== null) {
+    if (localStorage.getItem('authorization') !== null) {
       return true
     } else {
-      localStorage.getItem('Authorization')
+      localStorage.getItem('authorization')
       return false
     }
   }
 
   isAdmin() {
-    const token = localStorage.getItem("Authorization")!;
+    const token = localStorage.getItem("authorization")!;
 
     const head = new HttpHeaders({ 'authorization': token })
-
+    
     return this.http.get(this.url + "/tokenTest", { headers: head })
 
   }

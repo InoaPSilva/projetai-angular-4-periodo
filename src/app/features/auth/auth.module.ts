@@ -10,6 +10,7 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
 import { AuthComponent } from './auth.component';
 
 import { AuthService } from './services/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +22,8 @@ import { AuthService } from './services/auth.service';
     AuthComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule,
     AuthRoutingModule

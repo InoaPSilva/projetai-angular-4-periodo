@@ -41,7 +41,7 @@
              <i class="fas fa-lock"></i>
         </div>
         <div class="div">
-             <input type="file" class="input" placeholder="icone" formControlName="icon">
+             <input type="file" class="input" (change)="fileChangeEvent($event)" placeholder="icone" formControlName="icon">
      </div>
   </div>
   <div class="input-div pass">
@@ -49,9 +49,8 @@
              <i class="fas fa-lock"></i>
         </div>
         <div class="div">
-             <input type="file" class="input" placeholder="banner" formControlName="banner">
+             <input type="file" class="input" (change)="fileChangeEvent($event)" placeholder="banner" formControlName="banner">
      </div>
   </div>
-    <a href="#">Já possui uma conta?</a>
-    <button type="submit" class="btn" value="Registrar">Registar</button>
+    <button type="submit" class="btn btn-success" value="Registrar">Registar</button>
 </form>

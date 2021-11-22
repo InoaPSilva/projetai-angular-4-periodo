@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../service/project.service';
 
 @Component({
@@ -8,52 +8,64 @@ import { ProjectService } from '../../service/project.service';
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.css']
 })
+
 export class EditProjectComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    private router: Router,
+    private route: ActivatedRoute,
     private project: ProjectService) { }
-
+    
+    files = {}
 
 
   form = this.fb.group({
-    title: ['', Validators.required],
-    summary: ['', Validators.required],
-    objective: ['', Validators.required],
-    category: ['', Validators.required],
-    icon: ['', Validators.required],
-    banner: ['', Validators.required]
+    title: [''],
+    summary: [''],
+    objective: [''],
+    category: [''],
+    icon: [''],
+    banner: ['']
   });
 
+  fileChangeEvent(event: any): void {
+    this.files = {
+      icon: event.target.files[0],
+      banner: event.target.files[1],
+    }
+  }
 
   editProject() {
-    const files = {
-      icon: this.form.controls['icon'].value,
-      banner: this.form.controls['banner'].value 
-    }
+
     // Files input missing
+    console.log(this.form.value);
 
     return this.project.edit(
+      this.route.snapshot.paramMap.get('id'),
       this.form.controls['title'].value,
       this.form.controls['summary'].value,
       this.form.controls['objective'].value,
       this.form.controls['category'].value,
-      files
-      ).subscribe(
-        (response) => {
+      this.files
+    ).subscribe(
+      (response) => {
+        console.log("func inside");
 
-          if (response !== undefined) {
-            console.log("insira mensagem de sucesso");
+        if (response !== undefined) {
+          console.log(response);
 
-          }
-        },
-        (error) => {
+          console.log("insira mensagem de sucesso");
 
-          if (error.error !== undefined) {
-            console.log("insira mensagem de erro");
+        }
+      },
+      (error) => {
 
-          }
-        })
+        if (error.error !== undefined) {
+          console.log(error.error.text);
+
+          console.log("insira mensagem de erro");
+
+        }
+      })
 
   }
 

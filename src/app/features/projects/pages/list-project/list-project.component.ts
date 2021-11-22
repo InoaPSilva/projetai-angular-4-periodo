@@ -15,13 +15,14 @@ export class ListProjectComponent implements OnInit {
     
   }
   projects:any = [{}];
+  ProjetoId = this.projects[0]._id;
 
   getProject(){
     this.project.display().subscribe(objetos =>{ this.projects.push(objetos)
     this.projects = this.projects[1].message;    
     console.log(this.projects);
-    
     });    
   }
+
 
 }
