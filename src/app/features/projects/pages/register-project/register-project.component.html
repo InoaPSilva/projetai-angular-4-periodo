@@ -1,57 +1,60 @@
-<form [formGroup] ='form' (ngSubmit)="registerProject()">
-    <h2 class="title">Bem vindo</h2>
-       <div class="input-div one">
-          <div class="i">
-                  <i class="fas fa-user"></i>
-          </div>
-          <div class="div">
-                  <input type="text" class="input" placeholder="titulo" formControlName="title">
-          </div>
-       </div>
-       
-    <div class="input-div one">
-        <div class="i">
-                <i class="fas fa-user"></i>
-        </div>
-        <div class="div">
-            <input type="text" class="input" placeholder="resumo" formControlName="summary">
-        </div>
-    </div>
-    
+<section class="container mx-auto p-5">
+        <figure class="d-flex justify-content-center my-2">
+                <img src="../../../../../assets/images/logo/logo-projetai.png" alt="Logo ProjetAí" />
+                <figcaption class="d-none">Logo ProjetAí</figcaption>
+        </figure>
+        <section class="d-flex justify-content-center">
+                <h1 class="h1">Registre um projeto</h1>
+        </section>
 
-    <div class="input-div one">
-        <div class="i">
-                <i class="fas fa-user"></i>
-        </div>
-        <div class="div">
-                <input type="text" placeholder="objetivo" class="input" formControlName="objective">
-        </div>
-    </div>
+        <form [formGroup]='form' (ngSubmit)="registerProject()">
+                <section class="form-group">
+                        <input type="text" class="form-control" placeholder="titulo" formControlName="title">
+                </section>
 
-    <div class="input-div pass">
-          <div class="i"> 
-               <i class="fas fa-lock"></i>
-          </div>
-          <div class="div">
-               <input type="text" class="input" placeholder="categoria" formControlName="category">
-       </div>
-    </div>
-    <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="file" class="input" (change)="handleIcon($event)" placeholder="icone" formControlName="icon">
-     </div>
-  </div>
-  <div class="input-div pass">
-        <div class="i"> 
-             <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-             <input type="file" class="input" (change)="handleBanner($event)" placeholder="banner" formControlName="banner">
-     </div>
-  </div>
-    <a href="#">Já possui uma conta?</a>
-    <button type="submit" class="btn" value="Registrar">Registar</button>
-</form>
+                <section class="form-group">
+
+                        <input type="text" class="form-control" placeholder="resumo" formControlName="summary">
+
+                </section>
+
+                <section class="form-group">
+
+                        <input type="text" placeholder="objetivo" class="form-control" formControlName="objective">
+
+                </section>
+
+                <section class="form-group">
+
+                        <input type="text" class="form-control" placeholder="categoria" formControlName="category">
+
+                </section>
+
+
+                <section class="form-group">
+
+                        <input type="file" class="form-control" (change)="handleIcon($event)" placeholder="icone"
+                                formControlName="icon">
+
+                </section>
+                
+                <section class="form-group">
+
+                        <input type="file" class="form-control" (change)="handleBanner($event)" placeholder="icone"
+                                formControlName="icon">
+
+                </section>
+
+                <section class="d-flex justify-content-center">
+                        <section class="d-block">
+                                <section>
+                                        <button type="submit" class="btn btn-light mb-4">Registrar projeto</button>
+                                </section>
+
+                                <section>
+                                        <button type="button" class="btn btn-link ml-3">Voltar</button>
+                                </section>
+                        </section>
+                </section>
+        </form>
+</section>
