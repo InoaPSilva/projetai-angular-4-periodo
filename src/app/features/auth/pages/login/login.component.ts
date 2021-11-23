@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           if (response !== undefined) {
+            console.log(response);
+            
             console.log('insira mensagem de sucesso');
           }
         },
         (error) => {
-          if (error.error !== undefined) {
+          if (error.error.text !== undefined) {
             console.log('insira mensagem de erro');
           }
         }

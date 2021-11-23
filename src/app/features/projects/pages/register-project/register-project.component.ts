@@ -10,48 +10,42 @@ import { ProjectService } from '../../service/project.service';
 })
 export class RegisterProjectComponent implements OnInit {
   constructor(private fb: FormBuilder,
-    private router: Router,
     private project: ProjectService) { }
 
 
     icon:any = [];
-    banner:any = [];
 
   form = this.fb.group({
     title: ['', Validators.required],
     summary: ['', Validators.required],
     objective: ['', Validators.required],
     category: ['', Validators.required],
-    icon: ['', Validators.required],
-    banner: ['', Validators.required]
+    files:['', Validators.required],
   });
 
   handleIcon(e:any):void{
     console.log(e.srcElement.files);
-    const selectedFiles = e.srcElement.files;
+    const selectedFiles = e.srcElement.files[0];
     
-    this.icon = selectedFiles;
+    console.log(this.form.get('icon')?.value);
     
-  }
-  handleBanner(e:any):void{
-    console.log(e.srcElement.files);
-    const selectedFiles = e.srcElement.files;
-    
-    this.banner = selectedFiles;
+    this.form.get('icon')?.updateValueAndValidity(selectedFiles);
 
     
   }
 
   registerProject() {
-    console.log(this.icon[0], this.banner[0]);
+    console.log(this.icon[0]);
     
+    // const fd = new FormData();
+    // fd.append("title", this.form.get('title')?.value,)
+    // fd.append("summary", this.form.get('summary')?.value,)
+    // fd.append("objective", this.form.get('objective')?.value,)
+    // fd.append("category", this.form.get('category')?.value,)
+    // fd.append("files",  this.form.get('icon')?.value)
+
     return this.project.register(
-      this.form.controls['title'].value,
-      this.form.controls['summary'].value,
-      this.form.controls['objective'].value,
-      this.form.controls['category'].value,
-      this.icon[0],
-      this.banner[0]
+      this.form.value 
       ).subscribe(
         (response) => {
 
@@ -64,7 +58,7 @@ export class RegisterProjectComponent implements OnInit {
 
           
           if (error.error !== undefined) {
-            console.log(error.error.text);
+            console.log(error.error);
 
             console.log("insira mensagem de erro");
 
