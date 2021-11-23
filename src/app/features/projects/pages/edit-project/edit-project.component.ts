@@ -12,8 +12,8 @@ import { ProjectService } from '../../service/project.service';
 
 
 export class EditProjectComponent implements OnInit {
-  icon: any = []
-  banner: any = []
+  files: Set<File> = new Set();
+
   form = this.fb.group({
     title: [''],
     summary: [''],
@@ -29,44 +29,27 @@ export class EditProjectComponent implements OnInit {
     private project: ProjectService) { }
 
 
-  handleIcon(event: any) {
-    const a = event.target.files;
-    this.icon = a;
-    console.log(this.icon);
-    this.FData.append('icon', this.icon[0]);
-
-  }
-
-  handleBanner(event: any) {
-    const a = event.target.files;
-    this.banner = a;
-    console.log(this.banner);
-    this.FData.append('banner', this.banner[0]);
+  // onChange(e:any):void{
+  //   console.log(e.srcElement.files);
+  //   const selectedFiles = <FileList>e.srcElement.files;
     
-  }
+  //   this.files = new Set();
+  //   const fileNames = [];
+  //   for(let i=0; i<selectedFiles.length; i++){
+  //     fileNames.push(selectedFiles[i].name)
+  //     this.files.add(selectedFiles[i])
+  //   }
+  // }
 
   editProject() {
 
-    
-
-    this.FData.append("title", this.form.get("title")?.value)
-    this.FData.append("summary", this.form.get("summary")?.value)
-    this.FData.append("objective", this.form.get("objective")?.value)
-    this.FData.append("category", this.form.get("category")?.value)
-
-
-    console.log();
-    
-
     return this.project.edit(
       this.route.snapshot.paramMap.get('id'),
-          this.FData.get("title"),
-          this.FData.get("summary"),
-          this.FData.get("objective"),
-          this.FData.get("category"),
-          this.FData.get("icon"),
-          this.FData.get("banner"),
-
+          this.form.get("summary")?.value,
+          this.form.get("title")?.value,
+          this.form.get("objective")?.value,
+          this.form.get("category")?.value,
+          
           ).subscribe(
       (response) => {
         if (response !== undefined) {
@@ -78,8 +61,8 @@ export class EditProjectComponent implements OnInit {
       },
       (error) => {
 
-        if (error.error !== undefined) {
-          console.log(error.error.text);
+        if (error.error.error !== undefined) {
+          console.log(error.error);
 
           console.log("insira mensagem de erro");
 

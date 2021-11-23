@@ -14,6 +14,8 @@ export class RegisterProjectComponent implements OnInit {
     private project: ProjectService) { }
 
 
+    icon:any = [];
+    banner:any = [];
 
   form = this.fb.group({
     title: ['', Validators.required],
@@ -24,20 +26,32 @@ export class RegisterProjectComponent implements OnInit {
     banner: ['', Validators.required]
   });
 
+  handleIcon(e:any):void{
+    console.log(e.srcElement.files);
+    const selectedFiles = e.srcElement.files;
+    
+    this.icon = selectedFiles;
+    
+  }
+  handleBanner(e:any):void{
+    console.log(e.srcElement.files);
+    const selectedFiles = e.srcElement.files;
+    
+    this.banner = selectedFiles;
+
+    
+  }
 
   registerProject() {
-    const files = {
-      icon: this.form.controls['icon'].value,
-      banner: this.form.controls['banner'].value 
-    }
-    // Files input missing
-
+    console.log(this.icon[0], this.banner[0]);
+    
     return this.project.register(
       this.form.controls['title'].value,
       this.form.controls['summary'].value,
       this.form.controls['objective'].value,
       this.form.controls['category'].value,
-      files
+      this.icon[0],
+      this.banner[0]
       ).subscribe(
         (response) => {
 
@@ -48,7 +62,10 @@ export class RegisterProjectComponent implements OnInit {
         },
         (error) => {
 
+          
           if (error.error !== undefined) {
+            console.log(error.error.text);
+
             console.log("insira mensagem de erro");
 
           }
