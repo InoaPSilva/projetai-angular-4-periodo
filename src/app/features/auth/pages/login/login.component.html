@@ -1,4 +1,6 @@
-<section class="container mx-auto p-5">
+<section id="loginComponent"
+  class="container mx-auto p-5 shadow-lg justify-content-center bg-light align-middle"
+>
   <figure class="d-flex justify-content-center my-2">
     <img
       src="../../../../../assets/images/logo/logo-projetai.png"
@@ -10,38 +12,40 @@
     <h1 class="h1">Acesso Administração</h1>
   </section>
 
-  <form [formGroup] = 'form' (ngSubmit)="login()">
-    <section class="form-group">
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        formControlName="login"
-        placeholder="E-mail"
-      />
-    </section>
+  <section class="w-75 mx-auto">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <section class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          formControlName="login"
+          placeholder="E-mail"
+        />
+      </section>
 
-    <section class="form-group">
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-        formControlName="password"
-        placeholder="Senha"
-      />
-    </section>
+      <section class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          formControlName="password"
+          placeholder="Senha"
+        />
+      </section>
 
-    <section class="d-flex justify-content-center">
-      <section class="d-block">
-        <section>
-          <button type="submit" class="btn btn-light mb-4">Entrar</button>
-        </section>
+      <section class="d-flex justify-content-center">
+        <section class="d-block">
+          <section>
+            <button type="submit" class="btn btn-light mb-4">Entrar</button>
+          </section>
 
-        <section>
-          <button type="button" class="btn btn-link">Voltar</button>
+          <section>
+            <button type="button" class="btn btn-link">Voltar</button>
+          </section>
         </section>
       </section>
-    </section>
-  </form>
+    </form>
+  </section>
 </section>

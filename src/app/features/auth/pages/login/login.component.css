@@ -11,3 +11,9 @@
 .btn-link {
   color: #000;
 }
+
+@media screen and (max-width: 768px){
+  #loginComponent {
+    width: 70%;
+  }
+}
